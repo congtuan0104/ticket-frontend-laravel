@@ -4,12 +4,20 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisteredUserController;
-
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\EventController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event-detail');
+
+Route::get('/event', function () {
+    return redirect('/');
+});
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
 Route::get('/dashboard', function () {

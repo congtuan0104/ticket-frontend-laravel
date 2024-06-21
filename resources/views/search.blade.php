@@ -93,10 +93,8 @@
             </div>
 
             <div class="my-3">
-                <div class="flex justify-between">
-                    <span class="font-semibold">Sự kiện ca nhạc</span>
-                    <a class="cursor-pointer text-gray-700 hover:opacity-75">Xem thêm</a>
-                </div>
+                <span class="font-semibold">Kết quả tìm kiếm của sự kiện <b>{{ $keyword }}</b></span>
+
                 <div class="grid grid-cols-3 mt-3 gap-3">
                     <a href="{{ route('event-detail', ['id' => '12361273']) }}"
                         class="border border-gray-600 rounded-lg hover:border-green-600">
@@ -176,6 +174,15 @@
                                 <span>Tp.Hồ Chí Minh</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="join mt-3 inline-block">
+                        <a type="button" class="join-item btn btn-ghost">«</a>
+                        <div class="join-item btn btn-ghost">Trang {{ $page }}</div>
+                        <a href="/search?key={{ $keyword }}&page={{ $page + 1 }}" type="button"
+                            class="join-item btn btn-ghost">»</a>
                     </div>
                 </div>
             </div>
