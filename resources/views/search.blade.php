@@ -92,6 +92,37 @@
                 </div>
             </div>
 
+            <div class="mt-3 mb-5">
+                <p class="font-semibold mb-1">Bộ lọc</p>
+                <div class="flex gap-3">
+                    <select class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Who shot first?</option>
+                        <option>Han Solo</option>
+                        <option>Greedo</option>
+                    </select>
+
+                    <select class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Who shot first?</option>
+                        <option>Han Solo</option>
+                        <option>Greedo</option>
+                    </select>
+
+                    <select class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Who shot first?</option>
+                        <option>Han Solo</option>
+                        <option>Greedo</option>
+                    </select>
+
+                    <select class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Who shot first?</option>
+                        <option>Han Solo</option>
+                        <option>Greedo</option>
+                    </select>
+
+                    <button class="btn btn-primary"> <i class="fas fa-filter mr-1"></i>Lọc</button>
+                </div>
+            </div>
+
             <div class="my-3">
                 <span class="font-semibold">Kết quả tìm kiếm của sự kiện <b>{{ $keyword }}</b></span>
 

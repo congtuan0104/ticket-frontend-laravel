@@ -3,7 +3,7 @@
         <a href="{{ route('home') }}">
             <img src="{{ asset('images/logo.svg') }}" alt="Logo" class="h-[46px]">
         </a>
-        <form method="GET" action="{{ route('search') }}" class="flex-1 max-w-screen-sm">
+        <form method="GET" action="{{ route('search') }}" class="flex-1 max-w-screen-sm py-3">
 
             <label class="input input-bordered flex items-center gap-2 w-full">
                 <input type="text" name="key" class="grow border-none" placeholder="Tìm kiếm sự kiện" />
