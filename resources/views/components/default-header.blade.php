@@ -20,14 +20,22 @@
             <div class="flex items-center gap-8">
                 <div class="dropdown dropdown-bottom dropdown-end">
                     <div tabindex="0" role="button" class="btn m-1 btn-ghost text-white">
-                        <i class="fas fa-user-circle fa-2x"></i>
-                        Xin chào, {{ session('user')['name'] }}
+                        <img src="{{ session('user')['avatar'] }}" alt="Avatar" class="size-8 rounded-full">
+                        {{ session('user')['name'] }}
                         <i class="fas fa-sort-down mb-[6px]"></i>
                     </div>
                     <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a href="{{ route('profile.edit') }}">Tài khoản</a></li>
-                        {{-- <li><a href="{{ route('user-ticket') }}">Vé của tôi</a></li>
-                        <li><a href="{{ route('user-event') }}">Sự kiện của tôi</a></li> --}}
+                        <li><a href="{{ route('profile.edit') }}">
+                                @if (session('user')['role'] == 'organize')
+                                    Hồ sơ doanh nghiệp
+                                @else
+                                    Tài khoản cá nhân
+                                @endif
+                            </a></li>
+                        @if (session('user')['role'] == 'user')
+                            <li><a href="{{ route('user-ticket') }}">Vé của tôi</a></li>
+                        @endif
+                        {{-- <li><a href="{{ route('user-event') }}">Sự kiện của tôi</a></li> --}}
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

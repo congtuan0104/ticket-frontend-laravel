@@ -1,20 +1,29 @@
 <x-app-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="bg-white w-[500px] p-5 m-10 rounded-lg">
-            {{-- <div role="tablist" class="tabs tabs-boxed">
-                <button role="tab" class="tab tab-active">Tài khoản khách hàng</button>
-                <button role="tab" class="tab">Tài khoản doanh nghiệp</button>
-            </div> --}}
+            <div role="tablist" class="tabs tabs-boxed">
+                <a onclick="changeRole('user')" role="tab" class="tab tab-active tab-user">Tài khoản khách
+                    hàng</a>
+                <a onclick="changeRole('organize')" role="tab" class="tab tab-organize">Tài khoản doanh
+                    nghiệp</a>
+            </div>
+            <input id="role" name="role" value="user" type="text" class="hidden" />
+
             <h3 class="font-semibold text-[28px] mt-3">Đăng ký</h3>
             <p>Bạn đã có tài khoản? Tới trang <b><a href="{{ route('login.create') }}">đăng nhập</a></b></p>
 
-            <select required name="role" id="role" class="select select-bordered w-full mt-5 pl-6">
-                <option selected disabled>Loại tài khoản</option>
-                <option value="user">Tài khoản khách hàng</option>
-                <option value="organize">Tài khoản doanh nghiệp</option>
-            </select>
+            <label class="flex items-center gap-2 mt-5 flex-col cursor-pointer hover:opacity-85">
+                <div class="shrink-0">
+                    <img id='preview_img' class="size-32 object-cover rounded-full"
+                        src="https://i.pinimg.com/originals/e2/7c/87/e27c8735da98ec6ccdcf12e258b26475.png"
+                        alt="Avatar" />
+                </div>
+                <span class="">Chọn ảnh đại diện</span>
+                <input type="file" accept="image/*" onchange="loadFile(event)" class="hidden" name="avatar"
+                    id="avatar" placeholder="Tải avatar của bạn" />
+            </label>
 
             <label class="input input-bordered flex items-center gap-2 mt-5">
                 <input type="text" name="name" id="name" required
@@ -70,17 +79,37 @@
     </form>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var roleSelect = document.getElementById('role');
-            var nameInput = document.getElementById('name');
+        function changeRole(role) {
+            var roleInput = document.getElementById('role');
+            roleInput.value = role;
 
-            roleSelect.addEventListener('change', function() {
-                if (roleSelect.value === 'organize') {
-                    nameInput.placeholder = 'Tên tổ chức, doanh nghiệp';
-                } else {
-                    nameInput.placeholder = 'Họ và tên';
-                }
+            var tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('tab-active');
             });
-        });
+
+            var tab = document.querySelector('.tab-' + role);
+            tab.classList.add('tab-active');
+
+            var nameInput = document.getElementById('name');
+            if (role === 'organize') {
+                nameInput.placeholder = 'Tên tổ chức, doanh nghiệp';
+            } else {
+                nameInput.placeholder = 'Họ và tên';
+            }
+        }
+
+        function loadFile(event) {
+            var input = event.target;
+            var file = input.files[0];
+            var type = file.type;
+
+            var output = document.getElementById('preview_img');
+
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
     </script>
 </x-app-layout>

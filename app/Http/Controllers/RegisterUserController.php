@@ -28,13 +28,11 @@ class RegisterUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        // ]);
         if (!$request->name || !$request->email || !$request->phoneNumber || !$request->password || !$request->confirmPassword || !$request->role)
             return back()->withErrors(['message' => 'Vui lòng điền đầy đủ thông tin']);
+
+        if (!$request->hasFile('avatar'))
+            return back()->withErrors(['message' => 'Vui lòng chọn ảnh đại diện']);
 
         if (strlen($request->password) < 8)
             return back()->withErrors(['message' => 'Mật khẩu phải có ít nhất 8 ký tự']);
@@ -42,6 +40,14 @@ class RegisterUserController extends Controller
         if ($request->password != $request->confirmPassword)
             return back()->withErrors(['message' => 'Mật khẩu không khớp']);
 
+        $avatarFile = $request->file('avatar');
+        // dd(file_get_contents($avatarFile->getRealPath()));
+
+        $uploadRes = Http::attach('file', file_get_contents($avatarFile->getRealPath()), $avatarFile->getClientOriginalName())
+            ->post('http://localhost:8080/api/upload');
+
+
+        $fileUrl = $uploadRes->json()['fileUrl'];
 
         $user = ([
             'name' => $request->name,
@@ -49,6 +55,7 @@ class RegisterUserController extends Controller
             'phoneNumber' => $request->phoneNumber,
             'password' => $request->password,
             'role' => $request->role,
+            'avatar' => $fileUrl,
         ]);
 
         $res = Http::post('http://localhost:8080/api/auth/register', $user);

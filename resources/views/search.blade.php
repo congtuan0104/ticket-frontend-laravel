@@ -95,26 +95,26 @@
             <div class="mt-3 mb-5">
                 <p class="font-semibold mb-1">Bộ lọc</p>
                 <div class="flex gap-3">
-                    <select class="select select-bordered w-full max-w-xs">
-                        <option disabled selected>Who shot first?</option>
+                    <select name="cate" class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Thể loại sự kiện</option>
                         <option>Han Solo</option>
                         <option>Greedo</option>
                     </select>
 
-                    <select class="select select-bordered w-full max-w-xs">
-                        <option disabled selected>Who shot first?</option>
+                    <select name="location" class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Địa điểm tổ chức</option>
                         <option>Han Solo</option>
                         <option>Greedo</option>
                     </select>
 
-                    <select class="select select-bordered w-full max-w-xs">
-                        <option disabled selected>Who shot first?</option>
+                    <select name="data" class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Ngày tổ chức</option>
                         <option>Han Solo</option>
                         <option>Greedo</option>
                     </select>
 
-                    <select class="select select-bordered w-full max-w-xs">
-                        <option disabled selected>Who shot first?</option>
+                    <select name="price" class="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Giá vé</option>
                         <option>Han Solo</option>
                         <option>Greedo</option>
                     </select>

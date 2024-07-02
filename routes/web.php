@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserTicketController;
 
 Route::get('/', function () {
     return view('home');
@@ -20,14 +22,11 @@ Route::get('/event', function () {
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 Route::get('/register', [RegisterUserController::class, 'create'])
     ->name('register');
@@ -43,4 +42,13 @@ Route::post('/login', [AuthController::class, 'store'])
 Route::post('/logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
-require __DIR__ . '/auth.php';
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->name('password.update');
+
+Route::get('/my-ticket', [UserTicketController::class, 'index'])->name('user-ticket');
+Route::get('/my-ticket/{id}', [UserTicketController::class, 'detail'])->name('ticket-detail');
+Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+
+// require __DIR__ . '/auth.php';
