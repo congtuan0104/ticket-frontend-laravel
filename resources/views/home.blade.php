@@ -98,85 +98,22 @@
                     <a class="cursor-pointer text-gray-700 hover:opacity-75">Xem thêm</a>
                 </div>
                 <div class="grid grid-cols-3 mt-3 gap-3">
-                    <a href="{{ route('event-detail', ['id' => '12361273']) }}"
-                        class="border border-gray-600 rounded-lg hover:border-green-600">
-                        <img class="rounded-lg"
-                            src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
+                    @foreach ($data['events'] as $event)
+                        <a href="{{ route('event-detail', ['id' => $event['eventId']]) }}"
+                            class="border border-gray-600 rounded-lg hover:border-green-600">
+                            <img class="rounded-lg"
+                                src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
 
-                        <div class="p-2">
-                            <div class="font-semibold line-clamp-1">Piano solo</div>
-                            <div class="text-green-700">Giá vé</div>
-                            <div class="flex justify-between text-gray-700">
-                                <span>01/06/2024</span>
-                                <span>Tp.Hồ Chí Minh</span>
+                            <div class="p-2">
+                                <div class="font-semibold line-clamp-1">{{ $event['eventName'] }}</div>
+                                <div class="text-green-700 currency">{{ $event['basePrice'] }}</div>
+                                <div class="flex justify-between text-gray-700">
+                                    <span>{{ date_format(new DateTime($event['startTime']), 'd/m/Y') }}</span>
+                                    <span>{{ $event['locationName'] }}</span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <div class="border border-gray-600 rounded-lg">
-                        <img class="rounded-lg"
-                            src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
-
-                        <div class="p-2">
-                            <div class="font-semibold line-clamp-1">Piano solo</div>
-                            <div class="text-green-700">Giá vé</div>
-                            <div class="flex justify-between text-gray-700">
-                                <span>01/06/2024</span>
-                                <span>Tp.Hồ Chí Minh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-gray-600 rounded-lg">
-                        <img class="rounded-lg"
-                            src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
-
-                        <div class="p-2">
-                            <div class="font-semibold line-clamp-1">Piano solo</div>
-                            <div class="text-green-700">Giá vé</div>
-                            <div class="flex justify-between text-gray-700">
-                                <span>01/06/2024</span>
-                                <span>Tp.Hồ Chí Minh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-gray-600 rounded-lg">
-                        <img class="rounded-lg"
-                            src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
-
-                        <div class="p-2">
-                            <div class="font-semibold line-clamp-1">Piano solo</div>
-                            <div class="text-green-700">Giá vé</div>
-                            <div class="flex justify-between text-gray-700">
-                                <span>01/06/2024</span>
-                                <span>Tp.Hồ Chí Minh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-gray-600 rounded-lg">
-                        <img class="rounded-lg"
-                            src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
-
-                        <div class="p-2">
-                            <div class="font-semibold line-clamp-1">Piano solo</div>
-                            <div class="text-green-700">Giá vé</div>
-                            <div class="flex justify-between text-gray-700">
-                                <span>01/06/2024</span>
-                                <span>Tp.Hồ Chí Minh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border border-gray-600 rounded-lg">
-                        <img class="rounded-lg"
-                            src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
-
-                        <div class="p-2">
-                            <div class="font-semibold line-clamp-1">Piano solo</div>
-                            <div class="text-green-700">Giá vé</div>
-                            <div class="flex justify-between text-gray-700">
-                                <span>01/06/2024</span>
-                                <span>Tp.Hồ Chí Minh</span>
-                            </div>
-                        </div>
-                    </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>

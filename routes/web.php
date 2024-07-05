@@ -7,11 +7,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserTicketController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [EventController::class, 'index'])->name('home');
 
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event-detail');
 
@@ -50,5 +49,7 @@ Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->
 Route::get('/my-ticket', [UserTicketController::class, 'index'])->name('user-ticket');
 Route::get('/my-ticket/{id}', [UserTicketController::class, 'detail'])->name('ticket-detail');
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+
+Route::get('/payment/result', [PaymentController::class, 'result'])->name('payment-result');
 
 // require __DIR__ . '/auth.php';

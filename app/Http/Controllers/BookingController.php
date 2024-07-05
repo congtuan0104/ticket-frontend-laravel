@@ -11,6 +11,8 @@ class BookingController extends Controller
 {
     public function index(): View
     {
-        return view('buy-ticket');
+        return view('buy-ticket', [
+            'user' => session('user')
+        ]);
     }
 }

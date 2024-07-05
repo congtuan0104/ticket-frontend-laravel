@@ -147,7 +147,7 @@
         </div>
         <aside
             class="bg-white shadow-sm sticky top-[80px] flex-1 flex flex-col max-h-[calc(100vh_-_100px)] overflow-auto z-2 p-4 rounded-lg">
-            <h3 class="font-bold text-[18px] line-clamp-2">Tên sự kiện 1234 1234 1234 12344 1234 1243 3425 4235</h3>
+            <h3 class="font-bold text-[18px] line-clamp-2">{{ $base['eventName'] }}</h3>
 
             <div class="flex flex-col mt-3 flex-1 gap-5">
                 <div class="flex gap-3">
