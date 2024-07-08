@@ -13,15 +13,14 @@ class EventController extends Controller
     public function index(): View
     {
         // gọi api lấy danh sách sự kiện
-        $res = Http::get('http://localhost:8080/api/event/event');
-
-        $data = $res->json();
-
-        $category = Http::get('http://localhost:8080/api/event/eventCategory')->json();
+        $events = Http::get('http://localhost:8080/api/event/event')->json();
+        $categories = Http::get('http://localhost:8080/api/event/eventCategory')->json();
+        $cities = Http::get('http://localhost:8080/api/event/city')->json();
 
         return view('home', [
-            'data' => $data,
-            'category' => $category
+            'events' => $events,
+            'categories' => $categories,
+            'cities' => $cities
         ]);
     }
 
@@ -30,10 +29,17 @@ class EventController extends Controller
     public function show(string $id): View
     {
         // gọi api lấy thông tin chi tiết sự kiện
-        $base = Http::get('http://localhost:8080/api/event/event/' . $id)->json();
+        $event = Http::get('http://localhost:8080/api/event/event/' . $id)->json();
+        $organization = Http::get('http://localhost:8080/api/organization/' . $event['organizationId'])->json();
+        $cate = Http::get('http://localhost:8080/api/event/eventCategory/' . $event['eventCategoryId'])->json();
+        $tickets = Http::get('localhost:8080/api/ticket/eventTicketType/eventId/' . $event['eventId'])->json();
+
 
         return view('event-detail', [
-            'base' => $base
+            'event' => $event,
+            'organization' => $organization,
+            'cate' => $cate,
+            'tickets' => $tickets
         ]);
     }
 }

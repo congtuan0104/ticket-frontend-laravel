@@ -5,54 +5,24 @@
                 <div class="p-4 px-5 bg-yellow-600 font-semibold text-white">
                     DANH MỤC SỰ KIỆN
                 </div>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Ca nhạc
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Thể thao
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Văn hóa
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Du lịch
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Phim ảnh
-                </a>
+                @foreach ($categories as $category)
+                    <a href="{{ route('search', ['cate' => $category['eventCategoryId']]) }}"
+                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
+                        {{ $category['eventCategoryName'] }}
+                    </a>
+                @endforeach
             </div>
 
             <div>
                 <div class="p-4 px-5 bg-yellow-600 font-semibold text-white">
                     ĐỊA ĐIỂM TỔ CHỨC
                 </div>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Ca nhạc
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Thể thao
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Văn hóa
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Du lịch
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Phim ảnh
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Phim ảnh
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Phim ảnh
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Phim ảnh
-                </a>
-                <a class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
-                    Phim ảnh
-                </a>
+                @foreach ($cities as $city)
+                    <a href="{{ route('search', ['city' => $city['cityId']]) }}"
+                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
+                        {{ $city['cityName'] }}
+                    </a>
+                @endforeach
             </div>
 
         </aside>
@@ -98,7 +68,7 @@
                     <a class="cursor-pointer text-gray-700 hover:opacity-75">Xem thêm</a>
                 </div>
                 <div class="grid grid-cols-3 mt-3 gap-3">
-                    @foreach ($data['events'] as $event)
+                    @foreach ($events['events'] as $event)
                         <a href="{{ route('event-detail', ['id' => $event['eventId']]) }}"
                             class="border border-gray-600 rounded-lg hover:border-green-600">
                             <img class="rounded-lg"
