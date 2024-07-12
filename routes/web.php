@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\EventCategoryController;
 use App\Http\Controllers\OrganizationController;
@@ -16,12 +18,22 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserTicketController;
 
 Route::get('/', [EventController::class, 'index'])->name('home');
+Route::get('/event/create-step-one', [EventController::class, 'create'])->name('event.create');
+Route::post('/event/create-step-one', [EventController::class, 'store'])->name('event.store');
+Route::get('/event/create-step-two', [EventController::class, 'createStepTwo'])->name('event.create.step.two');
+Route::post('event/create-event-step-two', [EventController::class, 'postCreateStepTwo'])->name('event.create.step.two.post');
+Route::get('event/{id}/edit', [EventController::class, 'edit'])->name('event.edit');
+Route::put('event/{id}', [EventController::class, 'update'])->name('event.update');
 
+
+Route::delete('/event/{id}', [EventController::class, 'destroy'])->name('event.destroy');
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event-detail');
+// Route::put('/event/{id}', [EventController::class, 'update'])->name('event.update');
 
 Route::get('/event', function () {
     return redirect('/');
 });
+
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
@@ -53,11 +65,15 @@ Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->
 
 Route::get('/my-ticket', [UserTicketController::class, 'index'])->name('user-ticket');
 Route::get('/my-ticket/{id}', [UserTicketController::class, 'detail'])->name('ticket-detail');
+Route::post('/ticket/create', [TicketController::class, 'store'])->name('ticket.store');
+
+Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+
 Route::get('/event/{id}/booking', [BookingController::class, 'index'])->name('booking');
 Route::post('/event/booking', [BookingController::class, 'store'])->name('booking.store');
 
 Route::get('/payment/result', [PaymentController::class, 'result'])->name('payment-result');
-
+Route::get('/organization/event', [OrganizationController::class, 'index'])->name('organization-event');
 // require __DIR__ . '/auth.php';
 //Route::get('/admin/city', [CityController::class,'city'])->name('city');
 Route::get('/cities', [CityController::class, 'city'])->name('cities');
