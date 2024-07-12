@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                     @foreach ($cities as $city)
-                        <tr class="bg-gray-100">
+                        <tr class="border-b hover:bg-gray-100">
                             <td class="border px-4 py-2">{{ $city['cityId'] }}</td>
                             <td class="border px-4 py-2">
                                 <span class="city-name">{{ $city['cityName'] }}</span>

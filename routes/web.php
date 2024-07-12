@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\EventCategoryController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -63,3 +66,17 @@ Route::get('/cities/edit', [CityController::class, 'editCity'])->name('edit.city
 Route::put('/cities/update', [CityController::class, 'updateCity'])->name('update.city');
 
 Route::get('users', [UserController::class,'user'])->name('users');
+
+Route::get('/organizations', [OrganizationController::class,'organization'])->name('organizations');
+Route::post('/organizations/add', [OrganizationController::class, 'addOrganization'])->name('add.organization');
+Route::delete('/organizations/delete', [OrganizationController::class, 'deleteOrganization'])->name('delete.organization');
+Route::get('/organizations/edit', [OrganizationController::class, 'editOrganization'])->name('edit.organization');
+Route::put('/organizations/update', [OrganizationController::class, 'updateOrganization'])->name('update.organization');
+
+Route::get('/eventCategories', [EventCategoryController::class,'eventCategory'])->name('eventCategories');
+Route::post('/eventCategories/add', [EventCategoryController::class, 'addEventCategory'])->name('add.eventCategory');
+Route::delete('/eventCategories/delete', [EventCategoryController::class, 'deleteEventCategory'])->name('delete.eventCategory');
+Route::get('/eventCategories/edit', [EventCategoryController::class, 'editEventCategory'])->name('edit.eventCategory');
+Route::put('/eventCategories/update', [EventCategoryController::class, 'updateEventCategory'])->name('update.eventCategory');
+
+Route::get('/adminDashboard', [AdminDashboardController::class,'index'])->name('adminDashboard');
