@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -53,3 +54,10 @@ Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 Route::get('/payment/result', [PaymentController::class, 'result'])->name('payment-result');
 
 // require __DIR__ . '/auth.php';
+Route::get('/admin/city', [CityController::class,'city'])->name('city');
+Route::get('/cities', [CityController::class, 'city'])->name('cities');
+Route::post('/cities/add', [CityController::class, 'addCity'])->name('add.city');
+Route::delete('/cities/delete', [CityController::class, 'deleteCity'])->name('delete.city');
+Route::get('/cities/edit', [CityController::class, 'editCity'])->name('edit.city');
+Route::put('/cities/update', [CityController::class, 'updateCity'])->name('update.city');
+
