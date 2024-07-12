@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login.store') }}">
         @csrf
 
-        <div class="bg-white w-[500px] p-5 m-10 rounded-lg">
+        <div class="bg-white w-[500px] p-5 mt-10 mx-auto rounded-lg">
             <h3 class="font-semibold text-[28px]">Đăng nhập</h3>
             <p>hoặc <b><a href="{{ route('register') }}">đăng ký</a></b> tài khoản mới</p>
             <label class="input input-bordered flex items-center gap-2 mt-5">

@@ -2,16 +2,22 @@
     <div class="relative flex justify-between gap-5">
 
         <div class="w-[70%] pt-5">
-            <img src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg" alt="Ảnh mô tả"
-                class="w-full rounded-lg mb-3" />
+            <object width="100%" data="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
+                type="image/png" class="rounded-md">
+                <img width="100%" src="{{ $event['src_eventLogo'] }}" alt="Event" class="rounded-md" />
+            </object>
 
             <div class="my-5">
                 <span class="font-semibold text-xl bg-white ml-4 px-3 pt-1 rounded-t-xl">ĐƠN VỊ TỔ CHỨC</span>
                 <div class="bg-white rounded-lg p-4 flex gap-5">
                     <div class="size-[200px] rounded-xl border border-green-600">
-                        <img width="200" height="200"
-                            src={{ $organization['avatar'] ? $organization['avatar'] : 'https://vn4u.vn/wp-content/uploads/2023/09/logo-co-tinh-nhat-quan-2.png' }}
-                            alt="Logo đơn vị tổ chức" class="rounded-xl" />
+                        <object width="200" height="200"
+                            data="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/qp8rxi2jae4uinry2dv7"
+                            type="image/png" class="rounded-xl">
+                            <img width="200"
+                                src="{{ $organization['avatar'] ? $organization['avatar'] : 'https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/qp8rxi2jae4uinry2dv7' }}"
+                                alt="Logo đơn vị tổ chức" class="rounded-xl" />
+                        </object>
                     </div>
 
                     <div class="flex-1">
@@ -35,78 +41,56 @@
             <div class="my-5" id="event-ticket">
                 <span class="font-semibold text-xl bg-white ml-4 px-3 pt-1 rounded-t-xl">CÁC LOẠI VÉ</span>
                 <div class="flex flex-col bg-white rounded-lg p-4 ">
-                    @foreach ($tickets as $ticket)
-                        <div class="flex justify-between border-b border-gray-300 py-3">
-                            <div class="flex flex-col gap-4">
-                                <p class="uppercase text-lg">{{ $ticket['ticketName'] }}</p>
-                                <p>{{ $ticket['description'] }}</p>
+                    @if (is_null($tickets) || count($tickets) == 0)
+                        <p class="text-center">Chưa có vé nào</p>
+                    @else
+                        @foreach ($tickets as $ticket)
+                            <div class="flex justify-between border-b border-gray-300 py-3">
+                                <div class="flex flex-col gap-4">
+                                    <p class="uppercase text-lg">{{ $ticket['ticketName'] }}</p>
+                                    <p>{{ $ticket['description'] }}</p>
+                                </div>
+                                <div class="flex flex-col gap-2 items-end">
+                                    <p class="text-green-700 text-md mr-2 currency">{{ $ticket['price'] }}</p>
+                                    <button class="btn rounded-full"><i class="fas fa-cart-plus mr-1"></i> MUA</button>
+                                </div>
                             </div>
-                            <div class="flex flex-col gap-2 items-end">
-                                <p class="text-green-700 text-md mr-2 currency">{{ $ticket['price'] }}</p>
-                                <button class="btn rounded-full"><i class="fas fa-cart-plus mr-1"></i> MUA</button>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
 
                 </div>
             </div>
             <div class="my-5" id="event-evalute">
                 <span class="font-semibold text-xl bg-white ml-4 px-3 pt-1 rounded-t-xl">ĐÁNH GIÁ SỰ KIỆN</span>
                 <div class="flex flex-col bg-white rounded-lg p-4">
-                    <div class="flex flex-col border-b border-gray-300 py-2">
-                        <div class="flex mb-2">
-                            <div class="size-[50px] rounded-full bg-gray-300"></div>
-                            <div class="flex flex-col ml-3">
-                                <p class="font-semibold text-lg">Nguyễn Văn A</p>
-                                <div class="rating rating-sm">
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" checked />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                    <input type="radio" disabled" class="mask mask-star-2" />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
+                    @foreach ($evaluates as $evaluate)
+                        <div class="flex flex-col border-b border-gray-300 py-2">
+                            <div class="flex mb-2">
+                                <img src="{{ $evaluate['avatar'] }}" alt="Avatar"
+                                    class="size-[50px] rounded-full bg-gray-300" />
+                                <div class="flex flex-col ml-3">
+                                    <p class="font-semibold text-lg">{{ $evaluate['username'] }}</p>
+                                    <div class="rating rating-sm">
+                                        <input type="radio" name="rating-{{ $evaluate['evaluateId'] }}"
+                                            class="mask mask-star" />
+                                        <input type="radio" name="rating-{{ $evaluate['evaluateId'] }}"
+                                            class="mask mask-star" />
+                                        <input type="radio" name="rating-{{ $evaluate['evaluateId'] }}"
+                                            class="mask mask-star" />
+                                        <input type="radio" name="rating-{{ $evaluate['evaluateId'] }}"
+                                            class="mask mask-star" />
+                                        <input type="radio" name="rating-{{ $evaluate['evaluateId'] }}"
+                                            class="mask mask-star" />
+
+                                    </div>
                                 </div>
                             </div>
+                            <p>{{ $evaluate['evaluateContent'] }}</p>
+                            <p class="text-gray-500 text-xs mt-2">Đánh giá lúc
+                                {{ date_format(new DateTime($evaluate['time']), 'H:i d/m/Y') }}</p>
                         </div>
-                        <p>Tốt, đáng giá tham gia Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-                            scelerisque semper eros .</p>
-                        <p class="text-gray-500 text-xs">Đánh giá lúc 10:24 01/06/2024</p>
-                    </div>
-                    <div class="flex flex-col border-b border-gray-300 py-2">
-                        <div class="flex mb-2">
-                            <div class="size-[50px] rounded-full bg-gray-300"></div>
-                            <div class="flex flex-col ml-3">
-                                <p class="font-semibold text-lg">Nguyễn Văn A</p>
-                                <div class="rating rating-sm">
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" checked />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                    <input type="radio" disabled" class="mask mask-star-2" />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                </div>
-                            </div>
-                        </div>
-                        <p>Tốt, đáng giá tham gia Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-                            scelerisque semper eros .</p>
-                        <p class="text-gray-500 text-xs">Đánh giá lúc 10:24 01/06/2024</p>
-                    </div>
-                    <div class="flex flex-col border-b border-gray-300 py-2">
-                        <div class="flex mb-2">
-                            <div class="size-[50px] rounded-full bg-gray-300"></div>
-                            <div class="flex flex-col ml-3">
-                                <p class="font-semibold text-lg">Nguyễn Văn A</p>
-                                <div class="rating rating-sm">
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" checked />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                    <input type="radio" disabled" class="mask mask-star-2" />
-                                    <input type="radio" disabled name="rating-2" class="mask mask-star-2" />
-                                </div>
-                            </div>
-                        </div>
-                        <p>Tốt, đáng giá tham gia Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-                            scelerisque semper eros .</p>
-                        <p class="text-gray-500 text-xs">Đánh giá lúc 10:24 01/06/2024</p>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
 
@@ -150,7 +134,7 @@
                 </div>
             </div>
 
-            <a type="button" href="#event-ticket"
+            <a type="button" href="{{ route('booking', ['id' => $event['eventId']]) }}"
                 class="btn btn-primary w-full flex justify-center items-center gap-2">
                 <i class="fas fa-ticket-alt"></i>
                 <span>Mua vé sự kiện</span>

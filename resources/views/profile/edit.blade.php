@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-white w-[500px] p-5 m-10 rounded-lg">
+    <div class="bg-white w-[500px] p-5 mt-10 mx-auto rounded-lg">
         <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')

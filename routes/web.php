@@ -63,6 +63,7 @@ Route::get('/my-ticket/{id}', [UserTicketController::class, 'detail'])->name('ti
 Route::post('/ticket/create', [TicketController::class, 'store'])->name('ticket.store');
 
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+
 Route::get('/event/{id}/booking', [BookingController::class, 'index'])->name('booking');
 Route::post('/event/booking', [BookingController::class, 'store'])->name('booking.store');
 

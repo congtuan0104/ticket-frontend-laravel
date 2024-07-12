@@ -26,7 +26,7 @@
         @include('components.default-header')
 
         <!-- Page Content -->
-        <main class="max-w-screen-xl mx-auto pt-[60px] relative flex-1">
+        <main class="max-w-screen-xl mx-auto pt-[60px] relative flex-1 w-full">
             {{ $slot }}
         </main>
 

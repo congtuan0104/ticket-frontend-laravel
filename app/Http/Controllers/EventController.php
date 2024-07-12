@@ -34,13 +34,14 @@ class EventController extends Controller
         $organization = Http::get('http://localhost:8080/api/organization/' . $event['organizationId'])->json();
         $cate = Http::get('http://localhost:8080/api/event/eventCategory/' . $event['eventCategoryId'])->json();
         $tickets = Http::get('localhost:8080/api/ticket/eventTicketType/eventId/' . $event['eventId'])->json();
-
-
+        $evaluates = Http::get('localhost:8080/api/event/eventEvaluate/search?eventId=' . $event['eventId'])->json();
+        // dd($tickets);
         return view('event-detail', [
             'event' => $event,
             'organization' => $organization,
             'cate' => $cate,
-            'tickets' => $tickets
+            'tickets' => $tickets,
+            'evaluates' => $evaluates
         ]);
     }
 

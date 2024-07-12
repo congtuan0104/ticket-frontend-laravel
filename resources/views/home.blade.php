@@ -7,7 +7,7 @@
                 </div>
                 @foreach ($categories as $category)
                     <a href="{{ route('search', ['cate' => $category['eventCategoryId']]) }}"
-                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
+                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:font-semibold">
                         {{ $category['eventCategoryName'] }}
                     </a>
                 @endforeach
@@ -19,7 +19,7 @@
                 </div>
                 @foreach ($cities as $city)
                     <a href="{{ route('search', ['city' => $city['cityId']]) }}"
-                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
+                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:font-semibold">
                         {{ $city['cityName'] }}
                     </a>
                 @endforeach
@@ -71,8 +71,11 @@
                     @foreach ($events['events'] as $event)
                         <a href="{{ route('event-detail', ['id' => $event['eventId']]) }}"
                             class="border border-gray-600 rounded-lg hover:border-green-600">
-                            <img class="rounded-lg"
-                                src="https://ticketbox.vn/_next/image?url=https%3A%2F%2Fimages.tkbcdn.com%2F2%2F608%2F332%2Fts%2Fds%2Ff0%2F38%2F15%2Ff009dd87ed00495db2377515923b910f.png&w=1920&q=75" />
+                            <object width="100%" data="{{ asset('images/Thumbnail_placeholder.png') }}"
+                                type="image/png" class="rounded-lg">
+                                <img width="100%" src="{{ $event['src_eventThumbnail'] }}" alt="Event"
+                                    class="rounded-lg" />
+                            </object>
 
                             <div class="p-2">
                                 <div class="font-semibold line-clamp-1">{{ $event['eventName'] }}</div>

@@ -2,7 +2,7 @@
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
-        <div class="bg-white w-[500px] p-5 m-10 rounded-lg">
+        <div class="bg-white w-[500px] p-5 mt-10 mx-auto rounded-lg">
             <div role="tablist" class="tabs tabs-boxed">
                 <a onclick="changeRole('user')" role="tab" class="tab tab-active tab-user">Tài khoản khách
                     hàng</a>
