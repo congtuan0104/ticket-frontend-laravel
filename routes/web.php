@@ -48,7 +48,8 @@ Route::patch('/update-password', [ProfileController::class, 'updatePassword'])->
 
 Route::get('/my-ticket', [UserTicketController::class, 'index'])->name('user-ticket');
 Route::get('/my-ticket/{id}', [UserTicketController::class, 'detail'])->name('ticket-detail');
-Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+Route::get('/event/{id}/booking', [BookingController::class, 'index'])->name('booking');
+Route::post('/event/booking', [BookingController::class, 'store'])->name('booking.store');
 
 Route::get('/payment/result', [PaymentController::class, 'result'])->name('payment-result');
 

@@ -7,7 +7,7 @@
                 </div>
                 @foreach ($categories as $category)
                     <a href="{{ route('search', ['cate' => $category['eventCategoryId']]) }}"
-                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
+                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:font-semibold">
                         {{ $category['eventCategoryName'] }}
                     </a>
                 @endforeach
@@ -19,7 +19,7 @@
                 </div>
                 @foreach ($cities as $city)
                     <a href="{{ route('search', ['city' => $city['cityId']]) }}"
-                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:opacity-85">
+                        class="mx-4 py-2 pl-1 border-b border-solid border-gray-500 block cursor-pointer hover:font-semibold">
                         {{ $city['cityName'] }}
                     </a>
                 @endforeach
