@@ -155,4 +155,50 @@ class EventController extends Controller
         return redirect()->route('organization-event')->with("error", "Xóa thất bại");
     }
 
+    public function edit($id)
+    {
+        $event = Http::get('http://localhost:8080/api/event/event/' . $id)->json();
+        $categories = Http::get('http://localhost:8080/api/event/eventCategory')->json();
+        $cities = Http::get('http://localhost:8080/api/event/city')->json();
+        return view('event-edit', compact(['event', 'categories', 'cities']));
+    }
+
+    public function update($id, Request $request)
+    {
+        $event = Http::get('http://localhost:8080/api/event/event/' . $id)->json();
+        $validate = $request->validate([
+            'eventName' => 'required|max:255',
+            'eventCategoryId' => 'required|max:255',
+            'eventAddress' => 'required|max:255',
+            'thumbnail' => 'nullable',
+            'logo' => 'nullable',
+            'locationName' => 'required|max:255',
+            'cityId' => 'required|max:255',
+            'eventDescription' => 'nullable',
+            'startTime' => 'required',
+            'endTime' => 'required'
+        ]);
+        if ($event) {
+            $inputEvent = ([
+                "eventId" => $event['eventId'],
+                "eventName" => $request->eventName,
+                "eventAddress" => $request->eventAddress,
+                "eventDescription" => $request->eventDescription ?? '',
+                "eventCategoryId" => $request->eventCategoryId,
+                "organizationId" => "1",
+                'locationName' => $request->locationName,
+                "src_eventThumbnail" => $event['src_eventThumbnail'],
+                "src_eventLogo" => $event['src_eventLogo'],
+                "startTime" => $request->startTime,
+                "endTime" => $request->endTime,
+            ]);
+
+            $res = Http::put('http://localhost:8080/api/event/event', $inputEvent);
+            if ($res->successful()) {
+                return redirect()->route('organization-event')->with("success", "Cập nhật thành công");
+            }
+        }
+        return redirect()->back()->with("error", "Cập nhật thất bại");
+    }
+
 }

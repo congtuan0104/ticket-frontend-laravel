@@ -24,7 +24,8 @@
                         </div>
 
                         <div class="flex justify-end gap-4">
-                            <a href="" class="btn btn-outline btn-info"><i class="fa fa-edit"></i></a>
+                            <a href="{{route('event.edit', $event['eventId'])}}" class="btn btn-outline btn-info"><i
+                                    class="fa fa-edit"></i></a>
                             <form method="post" action="{{route('event.destroy', $event['eventId'])}}">
                                 @csrf
                                 @method('DELETE')

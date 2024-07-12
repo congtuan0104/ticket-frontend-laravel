@@ -7,7 +7,6 @@
                 <!-- <li class="step">Khuyến mãi</li> -->
             </ul>
         </div>
-
         <div class="bg-white w-full px-12 py-4 mt-2">
             <p class="font-semibold text-xl">Thiết lập thời gian</p>
             <form class="w-full flex flex-col justify-between items-center gap-3 mt-2" method="post"

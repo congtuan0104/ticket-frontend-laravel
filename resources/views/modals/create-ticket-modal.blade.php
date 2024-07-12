@@ -1,6 +1,6 @@
 <dialog id="create_ticket_modal" class="modal">
     <div class="bg-white modal-box">
-        <p class="font-semibold text-xl">Thiết lập thời gian</p>
+        <p class="font-semibold text-xl">Thiết lập vé</p>
         <form class="flex flex-col justify-between items-center gap-3 mt-2 w-full px-12" method="post"
             action="{{route('ticket.store')}}">
             @csrf

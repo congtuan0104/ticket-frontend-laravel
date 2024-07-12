@@ -17,6 +17,8 @@ Route::get('/event/create-step-one', [EventController::class, 'create'])->name('
 Route::post('/event/create-step-one', [EventController::class, 'store'])->name('event.store');
 Route::get('/event/create-step-two', [EventController::class, 'createStepTwo'])->name('event.create.step.two');
 Route::post('event/create-event-step-two', [EventController::class, 'postCreateStepTwo'])->name('event.create.step.two.post');
+Route::get('event/{id}/edit', [EventController::class, 'edit'])->name('event.edit');
+Route::put('event/{id}', [EventController::class, 'update'])->name('event.update');
 
 
 Route::delete('/event/{id}', [EventController::class, 'destroy'])->name('event.destroy');
